@@ -2,14 +2,15 @@ package org.example.szamla
 
 import org.springframework.web.bind.annotation.*
 
+
 @RestController
 class MessageController(val service: invoiceServices) {
     @GetMapping("/")
     fun index(): List<invoiceModel> = service.findInvoices()
 
     @GetMapping("/{id}")
-    fun index(@PathVariable id: String): List<invoiceModel> =
-        service.findMessageById(id)
+    fun index(@PathVariable id: Int): List<invoiceModel> =
+        service.findInvoiceById(id)
 
     @PostMapping("/")
     fun post(@RequestBody invoiceModel: invoiceModel) {
@@ -17,7 +18,7 @@ class MessageController(val service: invoiceServices) {
     }
 
     @DeleteMapping("/{id}")
-    fun deleteTask(@PathVariable id: String) {
+    fun deleteTask(@PathVariable id: Int) {
         service.deleteInvoice(id)
     }
 }
