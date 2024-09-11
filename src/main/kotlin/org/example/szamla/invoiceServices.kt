@@ -1,8 +1,7 @@
 package org.example.szamla
-
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Service
-import java.util.*
+import kotlin.jvm.optionals.toList
 
 interface MessageRepository : CrudRepository<invoiceModel, Int>
 
@@ -15,14 +14,11 @@ class invoiceServices(val db: MessageRepository) {
 
     fun save(invoice: invoiceModel) {
         if(invoice.issueDate > invoice.dueDate){
-            throw IllegalArgumentException("issue date is after due date")
+            throw IllegalArgumentException("issue date is after due date")  //ne legyen mar mar a kiallitas az esedekesseg utan
         }
         db.save(invoice)
     }
 
     fun deleteInvoice(id: Int) = db.deleteById(id)
-
-    fun <T : Any> Optional<out T>.toList(): List<T> =
-        if (isPresent) listOf(get()) else emptyList()
 }
 
