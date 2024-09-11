@@ -1,11 +1,13 @@
 package org.example.szamla
 
+import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.persistence.*
 import java.time.LocalDate
 
 @Entity
 @Table
 class invoiceModel(
+    @Schema(name = "customer name", required = true)
     @Column( nullable = false)
     val customerName: String,
     @Column( nullable = false)
