@@ -21,7 +21,7 @@ class MessageController(val service: InvoiceServices) {
     @PostMapping("/")
     fun post(@RequestBody invoice: invoiceModel): ResponseEntity<invoiceModel> {
         if (invoice.issueDate > invoice.dueDate)
-            return ResponseEntity(HttpStatus.NOT_ACCEPTABLE)
+            return ResponseEntity(HttpStatus.BAD_REQUEST)
         service.save(invoice)
         return ResponseEntity(invoice, HttpStatus.OK)
     }
