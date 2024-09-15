@@ -7,7 +7,7 @@ import java.time.LocalDate
 @Entity
 @Table
 class invoiceModel(
-    @Schema(name = "customer name", required = true) //pelda a schema hasznalatara
+    @Schema(description = "cica", example = "username username", required = true) //pelda a schema hasznalatara
     @Column( nullable = false)
     val customerName: String,
     @Column( nullable = false)
