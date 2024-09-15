@@ -1,12 +1,18 @@
-version: '3'
 services:
-  postgres:
+  server:
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+  db:
     image: postgres:13
-    container_name: postgres_docker
+    container_name: postgres_docker_all
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres_docker
+      POSTGRES_DB: postgres_docker_all
     ports:
       - "5432:5432"
     volumes:
@@ -14,3 +20,4 @@ services:
 
 volumes:
   pgdata:
+
