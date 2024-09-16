@@ -1,5 +1,6 @@
 package org.example.szamla
 import org.springframework.data.repository.CrudRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 interface MessageRepository : CrudRepository<invoiceModel, Int>
@@ -9,7 +10,7 @@ class InvoiceServices(val db: MessageRepository) {
 
     fun findInvoices(): List<invoiceModel> = db.findAll().toList()
 
-    fun findInvoiceById(id: Int): invoiceModel? = db.findById(id).orElse(null)
+    fun findInvoiceById(id: Int): invoiceModel? = db.findByIdOrNull(id)
 
     fun save(invoice: invoiceModel) = db.save(invoice)
 
